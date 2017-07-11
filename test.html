@@ -1,0 +1,119 @@
+<html>
+
+<head>
+  <!-- Jasmine References -->
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.3.3/jasmine.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.3.3/jasmine.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.3.3/jasmine-html.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.3.3/boot.min.js"></script>
+
+  <!-- Angular and Angular Mock references -->
+  <script type="text/javascript" src="https://code.angularjs.org/1.4.0-rc.2/angular.min.js"></script>
+  <script type="text/javascript" src="https://code.angularjs.org/1.4.0-rc.2/angular-mocks.js"></script>
+</head>
+
+<body></body>
+<script type="text/javascript" src="core.js"></script>
+<script type="text/javascript">
+  /* Test Code */
+  describe('eventControllerTestDemo', function() {
+
+    beforeEach(module('eventController'));
+    var $controller;
+    var controller;
+    var $scope = {};
+    beforeEach(inject(function(_$controller_) {
+      // $controller = _$controller_;
+      controller = _$controller_('mainController', {
+        $scope: $scope
+      });
+      // var controller = $controller('mainController', { $scope: $scope });
+    }));
+
+    describe('initial setup', function() {
+      it('Test newProduct was inserted properly', function() {
+        expect($scope.newProduct.title).toBe("Insert Product");
+        expect($scope.newProduct.cost).toBe(0);
+      });
+
+      it('Test data was inserted properly', function() {
+        expect($scope.data.length).toBe(3);
+        expect($scope.data[0].title).toBe("Popcorn");
+      });
+    });
+
+    describe('Test productTotal() with no deals', function() {
+      var testProduct = {
+        "title": "Popcorn",
+        "cost": 3,
+        "amount": 6
+      };
+
+      it('Test newProduct was inserted properly with no deal', function() {
+        expect($scope.productTotal(testProduct)).toBe(18);
+      });
+    });
+
+    describe('Test productTotal() with deals', function() {
+      var testProduct = {
+        "title": "Snickers",
+        "cost": 4,
+        "amount": 2,
+        "dealTitle": "(8 for the price of 3)",
+        "dealAmount": 8,
+        "dealLowered": 3
+      };
+
+      it('Test newProduct was inserted properly with a deal', function() {
+        expect($scope.productTotal(testProduct)).toBe(8);
+        testProduct.amount = 9;
+        expect($scope.productTotal(testProduct)).toBe(16);
+
+      });
+    });
+
+    describe('Test totalCost() with deals', function() {
+
+
+      it('Test newProduct was inserted properly with a deal', function() {
+        $scope.data[0].amount = 1;
+        $scope.data[2].amount = 8;
+        expect($scope.totalCost()).toBe(19);
+
+      });
+    });
+
+    describe('Test totalCost() with deals', function() {
+
+
+      it('Test newProduct was inserted properly with a deal', function() {
+        $scope.data[0].amount = 1;
+        $scope.data[2].amount = 8;
+        expect($scope.totalCost()).toBe(19);
+
+      });
+    });
+
+    describe('Test addProduct()', function() {
+
+
+      it('Test addProduct adds a new product', function() {
+        $scope.newProduct = {
+          "title": "Apple",
+          "cost": 5
+        };
+        $scope.addProduct();
+
+        expect($scope.data.length).toBe(4);
+        expect($scope.data[3].title).toBe("Apple");
+        expect($scope.newProduct.title).toBe("Insert Product");
+        expect($scope.newProduct.cost).toBe(0);
+
+
+      });
+    });
+
+  });
+</script>
+
+</html>

@@ -1,0 +1,71 @@
+<html lang="en" ng-app="eventController">
+
+
+<head>
+  <title>Cashier</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.js"></script>
+  <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+  <link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css">
+  <script type="text/javascript" src="core.js"></script>
+</head>
+
+<body ng-controller="mainController">
+
+  <div class="navbar navbar-default navbar-static-top">
+    <div class="container">
+      <div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-ex-collapse"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+        <a class="navbar-brand" href="#"><span>Cashier Demo&nbsp;</span></a>
+      </div>
+      <div class="collapse navbar-collapse" id="navbar-ex-collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="http://dugankniesteadt.us-east-2.elasticbeanstalk.com/">Dugan's Website</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="section">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="text-center">Cashier</h1></div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Cost</th>
+                <th>Amount</th>
+                <th>Total</th>
+              </tr>
+            </thead <tbody>
+            <tr ng:repeat="product in data">
+              <td>{{product.title}}</td>
+              <td>{{(product.cost | currency) + " " + product.dealTitle }}</td>
+              <td><input type="number" ng:model="product.amount" min=0></td>
+              <td>{{productTotal(product) | currency}}</td>
+            </tr>
+            <tr>
+              <td><input type="text" ng:model="newProduct.title"></td>
+              <td><input type="number" ng:model="newProduct.cost"></td>
+              <td></td>
+              <td><button ng-click="addProduct()">Add Product</button></td>
+            </tr>
+            <tr>
+              <td>Total:</td>
+              <td></td>
+              <td></td>
+              <td>{{totalCost() | currency}}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,21 @@
+[
+  {
+		"title": "Popcorn",
+		"cost": 3,
+		"amount": 0
+	},
+	{
+		"title": "Snickers",
+		"cost": 4,
+		"amount": 0,
+    "dealTitle":"(5 for the price of 3)",
+    "dealAmount":5,
+    "dealLowered":3
+
+	},
+	{
+		"title": "Soda",
+		"cost": 2,
+		"amount": 0
+	}
+]
